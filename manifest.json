@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "Prompt Refiner",
+    "version": "1.0",
+    "permissions": [
+      "storage",
+      "scripting"
+    ],
+    "host_permissions": [
+      "https://*.generativelanguage.googleapis.com/*"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html"
+    }
+  }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Prompt Refiner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Prompt Refiner</h1>
+    <textarea id="userInput" placeholder="Enter your text here..."></textarea>
+    
+    <div class="options">
+      <h3>Refinement Options:</h3>
+      <select id="refinementType">
+        <option value="coding">Coding Assistance</option>
+        <option value="content"></option>
+        <option value="academic">Academic Writing</option>
+        <option value="creative">Creative Writing</option>
+      </select>
+    </div>
+    
+    <button id="refineBtn">Refine Text</button>
+    
+    <div class="result-container">
+      <h3>Refined Output:</h3>
+      <textarea id="refinedOutput" readonly></textarea>
+      <button id="copyBtn">Copy to Clipboard</button>
+    </div>
+    
+    <div class="api-settings">
+      <input type="password" id="apiKey" placeholder="Enter Gemini API Key">
+      <button id="saveApiKey">Save Key</button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

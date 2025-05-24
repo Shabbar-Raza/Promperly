@@ -1,0 +1,77 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini Refiner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>
+        <svg class="logo-icon" viewBox="0 0 24 24">
+          <path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.5L18 9v6l-6 3.5-6-3.5V9l6-3.5z"/>
+        </svg>
+        Promperly
+      </h1>
+      <div class="model-badge">Gemini 2.0 Flash</div>
+    </header>
+
+    <main class="app-content">
+      <div class="input-section">
+        <label for="userInput">Your Text</label>
+        <textarea id="userInput" placeholder="Paste or type your content here..." rows="5"></textarea>
+      </div>
+
+      <div class="controls-section">
+        <div class="select-wrapper">
+          <label for="refinementType">Refinement Style</label>
+          <select id="refinementType">
+            <option value="coding">Technical Code</option>
+            <option value="productIdea">Product Idea</option>
+            <option value="debugging">Debugging</option>
+            <option value="businessStrategy">Business Strategy</option>
+          </select>          
+        </div>
+
+        <button id="refineBtn" class="primary-btn">
+          <span class="btn-content">
+            <svg class="btn-icon" viewBox="0 0 24 24">
+              <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+            </svg>
+            Refine Text
+          </span>
+        </button>
+      </div>
+
+      <div class="output-section">
+        <div class="section-header">
+          <label>Refined Output</label>
+          <button id="copyBtn" class="icon-btn" title="Copy to clipboard">
+            <svg viewBox="0 0 24 24">
+              <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+            </svg>
+          </button>
+        </div>
+        <textarea id="refinedOutput" readonly rows="5"></textarea>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <div class="api-settings">
+        <input type="password" id="apiKey" placeholder="Enter Gemini API key">
+        <button id="saveApiKey" class="secondary-btn">Save Key</button>
+      </div>
+    </footer>
+  </div>
+  <div class="footer-credit">
+    Made by  <a href="https://www.linkedin.com/in/muhammad-shabbar-b440932bb/" target="_blank" rel="noopener noreferrer"> Muhammad Shabbar</a>
+</div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
