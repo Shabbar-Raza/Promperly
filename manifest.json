@@ -4,8 +4,11 @@
     "version": "1.0",
     "permissions": [
       "storage",
+      "activeTab",
       "scripting"
     ],
+
+
     "host_permissions": [
       "https://*.generativelanguage.googleapis.com/*"
     ],
