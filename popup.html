@@ -1,5 +1,3 @@
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto+Mono&display=swap" rel="stylesheet">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +36,12 @@
           </select>          
         </div>
 
+        <button id="addPromptBtn" class="icon-btn" title="Add custom refinement type">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+          </svg>
+        </button>
+
         <button id="refineBtn" class="primary-btn">
           <span class="btn-content">
             <svg class="btn-icon" viewBox="0 0 24 24">
@@ -69,9 +73,28 @@
     </footer>
   </div>
   <div class="footer-credit">
-    Made by  <a href="https://www.linkedin.com/in/muhammad-shabbar-b440932bb/" target="_blank" rel="noopener noreferrer"> Muhammad Shabbar</a>
-</div>
-  
+    Made by <a href="https://www.linkedin.com/in/muhammad-shabbar-b440932bb/" target="_blank" rel="noopener noreferrer">Muhammad Shabbar</a>
+  </div>
+
+  <!-- Add Prompt Modal -->
+  <div id="addPromptModal" class="modal">
+    <div class="modal-content">
+      <h3>Add Custom Refinement Type</h3>
+      <div class="input-group">
+        <label for="promptName">Name</label>
+        <input type="text" id="promptName" placeholder="e.g., Creative Writing">
+      </div>
+      <div class="input-group">
+        <label for="promptDescription">Description Template</label>
+        <textarea id="promptDescription" rows="5" placeholder="Describe how this refinement should work..."></textarea>
+      </div>
+      <div class="modal-actions">
+        <button id="cancelAddPrompt" class="secondary-btn">Cancel</button>
+        <button id="savePrompt" class="primary-btn">Save</button>
+      </div>
+    </div>
+  </div>
+
   <script src="popup.js"></script>
 </body>
 </html>
