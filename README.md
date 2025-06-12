@@ -12,6 +12,8 @@ Promperly is a lightweight and powerful Chrome Extension that helps you refine a
 - 🎯 Add your **own custom prompt types** for full control
 - ⚡ Powered by Google Gemini (requires your API key)
 - 🧠 Designed for seamless interaction in any text input area
+
+  
 ![image](https://github.com/user-attachments/assets/c4b927c5-e60b-4380-aaec-be7cca19987c)
 ![image](https://github.com/user-attachments/assets/b479a1b3-4a65-48da-9ff1-544d02de135c)
 
@@ -74,4 +76,4 @@ MIT License
 
 ---
 
-Made with ❤️ by [Your Name]
+Made By Muhammad Shabbar
