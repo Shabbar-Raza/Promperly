@@ -269,37 +269,134 @@ document.addEventListener('DOMContentLoaded', () => {
             : '<span class="btn-content"><svg class="btn-icon" viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg> Refine Text</span>';
     }
 
-    async function loadCustomPrompts() {
-        try {
-            const response = await chrome.runtime.sendMessage({ 
-                action: 'getCustomPrompts' 
-            });
-            
-            if (response.error) {
-                console.error('Error loading custom prompts:', response.error);
-                return;
-            }
-            
-            const select = document.getElementById('refinementType');
-            
-            // Clear existing custom options (keep the first 4 default ones)
-            while (select.options.length > 4) {
-                select.remove(4);
-            }
-            
-            // Add custom options
-            if (response.customPrompts) {
-                Object.keys(response.customPrompts).forEach(key => {
-                    const option = document.createElement('option');
-                    option.value = key;
-                    option.textContent = key;
-                    select.appendChild(option);
-                });
-            }
-        } catch (error) {
-            console.error('Error loading custom prompts:', error);
+    // In popup.js, update the loadCustomPrompts function:
+async function loadCustomPrompts() {
+    try {
+        const response = await chrome.runtime.sendMessage({ 
+            action: 'getCustomPrompts' 
+        });
+        
+        if (response.error) {
+            console.error('Error loading custom prompts:', response.error);
+            return;
         }
+        
+        const select = document.getElementById('refinementType');
+        
+        // Clear existing custom options (keep the first 4 default ones)
+        while (select.options.length > 4) {
+            select.remove(4);
+        }
+        
+        // Add custom options
+        if (response.customPrompts) {
+            Object.keys(response.customPrompts).forEach(key => {
+                const option = document.createElement('option');
+                option.value = key;
+                option.className = 'custom-option';
+                
+                // Create a span with delete icon
+                const optionContent = document.createElement('span');
+                optionContent.className = 'option-content';
+                optionContent.textContent = key;
+                
+                const deleteIcon = document.createElement('span');
+                deleteIcon.className = 'delete-icon';
+                deleteIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>';
+                deleteIcon.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    deleteCustomPrompt(key);
+                });
+                
+                option.appendChild(optionContent);
+                option.appendChild(deleteIcon);
+                select.appendChild(option);
+            });
+        }
+    } catch (error) {
+        console.error('Error loading custom prompts:', error);
     }
+}
+
+// Add this new function to handle deletion
+// Update the loadCustomPrompts function in popup.js
+async function loadCustomPrompts() {
+    try {
+        const response = await chrome.runtime.sendMessage({ 
+            action: 'getCustomPrompts' 
+        });
+        
+        if (response.error) {
+            console.error('Error loading custom prompts:', response.error);
+            return;
+        }
+        
+        const select = document.getElementById('refinementType');
+        
+        // Clear all options
+        while (select.options.length > 0) {
+            select.remove(0);
+        }
+        
+        // Add default options with delete icons (disabled for defaults)
+        Object.keys(response.defaultPrompts).forEach(key => {
+            const option = document.createElement('option');
+            option.value = key;
+            option.className = 'default-option';
+            
+            const optionContent = document.createElement('span');
+            optionContent.className = 'option-content';
+            optionContent.textContent = getDisplayName(key);
+            
+            const deleteIcon = document.createElement('span');
+            deleteIcon.className = 'delete-icon';
+            deleteIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>';
+            deleteIcon.title = 'Default refinements cannot be deleted';
+            
+            option.appendChild(optionContent);
+            option.appendChild(deleteIcon);
+            select.appendChild(option);
+        });
+        
+        // Add custom options with functional delete icons
+        if (response.customPrompts) {
+            Object.keys(response.customPrompts).forEach(key => {
+                const option = document.createElement('option');
+                option.value = key;
+                option.className = 'custom-option';
+                
+                const optionContent = document.createElement('span');
+                optionContent.className = 'option-content';
+                optionContent.textContent = key;
+                
+                const deleteIcon = document.createElement('span');
+                deleteIcon.className = 'delete-icon';
+                deleteIcon.innerHTML = '<svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>';
+                deleteIcon.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    deleteCustomPrompt(key);
+                });
+                
+                option.appendChild(optionContent);
+                option.appendChild(deleteIcon);
+                select.appendChild(option);
+            });
+        }
+    } catch (error) {
+        console.error('Error loading custom prompts:', error);
+    }
+}
+
+// Helper function to get display names for default options
+function getDisplayName(key) {
+    const displayNames = {
+        coding: 'Technical Code',
+        productIdea: 'Product Idea',
+        debugging: 'Debugging',
+        businessStrategy: 'Business Strategy'
+    };
+    return displayNames[key] || key;
+}
 
     function showToast(message, duration = 3000) {
         const toast = document.createElement('div');

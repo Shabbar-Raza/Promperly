@@ -475,3 +475,100 @@ button {
     height: 14px;
     fill: currentColor;
 }
+
+/* Add to styles.css */
+.select-wrapper {
+    position: relative;
+}
+
+.select-with-delete {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.delete-refinement {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    opacity: 0.5;
+    transition: var(--transition);
+    display: none; /* Hidden by default */
+}
+
+.delete-refinement:hover {
+    opacity: 1;
+    color: var(--primary);
+}
+
+.select-wrapper:hover .delete-refinement {
+    display: block; /* Show on hover */
+}
+
+/* Add these styles to styles.css */
+.custom-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+}
+
+.custom-option .delete-icon {
+    width: 14px;
+    height: 14px;
+    fill: var(--text-muted);
+    transition: var(--transition);
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.custom-option:hover .delete-icon {
+    fill: var(--primary);
+}
+
+/* Style for default options */
+.default-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+}
+
+.default-option .delete-icon {
+    width: 14px;
+    height: 14px;
+    fill: var(--text-muted);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Make sure the select dropdown shows our custom options */
+select option {
+    padding: 8px 12px;
+}
+
+/* Add to styles.css */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    z-index: 1;
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper::after {
+    content: "▼";
+    font-size: 10px;
+    color: var(--text-muted);
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 0;
+}

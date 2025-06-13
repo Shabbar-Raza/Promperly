@@ -36,15 +36,18 @@
 
       <div class="middle-section">
         <div class="controls-section">
-          <div class="select-wrapper">
+          <!-- In popup.html, update the select-wrapper div -->
+        <div class="select-wrapper">
             <label for="refinementType">Refinement Style</label>
-            <select id="refinementType">
-              <option value="coding">Technical Code</option>
-              <option value="productIdea">Product Idea</option>
-              <option value="debugging">Debugging</option>
-              <option value="businessStrategy">Business Strategy</option>
-            </select>
-          </div>
+            <div class="select-with-delete">
+                <select id="refinementType">
+                    <option value="coding">Technical Code</option>
+                    <option value="productIdea">Product Idea</option>
+                    <option value="debugging">Debugging</option>
+                    <option value="SystemDesign">System Design and Architecture</option>
+                </select>
+            </div>
+        </div>
 
           <div class="button-group">
             <button id="addPromptBtn" class="icon-btn" title="Add custom refinement type">
